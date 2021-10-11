@@ -10,6 +10,9 @@ set suffixes-=.obj
 
 "设置 leader 为 ,
 let mapleader=","
+"重新映射 esc 按键
+inoremap jj <esc>
+inoremap <esc> <nop>
 "自动缩进
 set autoindent
 "将 tag 缩进改为 4 格
@@ -75,6 +78,11 @@ noremap <leader>n :NERDTree <CR>
 noremap <leader>i :PlugInstall<CR>
 noremap <leader>c :PlugClean<CR>
 noremap <leader>u :PlugUpdate<CR>
+noremap <leader>l :!
+noremap <leader>r :r !
+noremap <leader>x :x<CR>
+noremap <leader>q :q!<CR>
+noremap <leader>e :ab email Clay Stan <claystan97@gmail.com><CR>i
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
