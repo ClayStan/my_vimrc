@@ -12,7 +12,7 @@ set suffixes-=.obj
 let mapleader=","
 "重新映射 esc 按键
 inoremap jj <esc>
-inoremap <esc> <nop>
+" inoremap <esc> <nop>
 "自动缩进
 set autoindent
 "将 tag 缩进改为 4 格
@@ -60,7 +60,7 @@ augroup END
 let Tlist_Compact_Format = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
-nnoremap <C-l> :TlistToggle<CR>
+nnoremap <leader>t :TlistToggle<CR>
 
 "Plugins
 call plug#begin('~/.vim/plugged')
@@ -69,20 +69,28 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'frazrepo/vim-rainbow'
 Plug 'preservim/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
 "vim-plug 快捷键
-noremap <leader>n :NERDTree <CR>
-noremap <leader>i :PlugInstall<CR>
-noremap <leader>c :PlugClean<CR>
-noremap <leader>u :PlugUpdate<CR>
-noremap <leader>l :!
-noremap <leader>r :r !
-noremap <leader>x :x<CR>
-noremap <leader>q :q!<CR>
-noremap <leader>e :ab email Clay Stan <claystan97@gmail.com><CR>i
+nnoremap <leader>n :NERDTree <CR>
+nnoremap <leader>i :PlugInstall<CR>
+nnoremap <leader>c :PlugClean<CR>
+nnoremap <leader>u :PlugUpdate<CR>
+nnoremap <leader>l :!
+nnoremap <leader>r :r !
+nnoremap <leader>x :x<CR>
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>e :ab email Clay Stan <claystan97@gmail.com><CR>i
+"normal mode 下使用 c-k c-j 映射翻页
+nnoremap <c-k> <c-b>
+nnoremap <c-j> <c-f>
+"insert mode 下映射光标移动
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
