@@ -69,7 +69,7 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'frazrepo/vim-rainbow'
 Plug 'preservim/nerdcommenter'
-Plug 'tpope/vim-commentary'
+Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
