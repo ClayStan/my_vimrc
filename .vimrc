@@ -12,7 +12,6 @@ set suffixes-=.obj
 let mapleader=","
 "重新映射 esc 按键
 inoremap jj <esc>
-" inoremap <esc> <nop>
 "自动缩进
 set autoindent
 "将 tag 缩进改为 4 格
@@ -78,6 +77,7 @@ nnoremap <leader>n :NERDTree <CR>
 nnoremap <leader>i :PlugInstall<CR>
 nnoremap <leader>c :PlugClean<CR>
 nnoremap <leader>u :PlugUpdate<CR>
+"自定义快捷键
 nnoremap <leader>l :!
 nnoremap <leader>r :r !
 nnoremap <leader>x :x<CR>
