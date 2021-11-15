@@ -6,6 +6,7 @@ set backspace=indent,eol,start
 set ruler
 "设置 leader 为 ,
 let mapleader=","
+set timeoutlen=200
 "自动缩进
 set autoindent
 "将 tag 缩进改为 4 格
@@ -60,6 +61,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdcommenter'
 Plug 'Raimondi/delimitMate'
+Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
@@ -86,3 +88,12 @@ nnoremap - $
 
 "取消 q 的映射(cmd line window && recording
 nnoremap q <Nop>
+
+
+
+
+autocmd FileType python setlocal completeopt-=preview
+let g:pymode_rope = 0
+let g:jedi#smart_auto_mappings = 1
+let g:jedi#completions_command = "<TAB>"
+let g:jedi#popup_on_dot=0
