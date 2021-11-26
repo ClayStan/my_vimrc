@@ -12,7 +12,7 @@ set autoindent
 "将 tag 缩进改为 4 格
 set tabstop=4
 "将 tab 的缩进改为空格
-set expandtab
+" set expandtab
 "自动加载文件更改
 set autoread
 "开启光亮光标行
@@ -50,29 +50,27 @@ augroup resCur
   autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup END
 
-"Taglist
-let Tlist_Compact_Format = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Close_On_Select = 1
-nnoremap <leader>t :TlistToggle<CR>
-
 "Plugins 注释的是使用系统的包管理器安装了
 call plug#begin('~/.vim/plugged')
 
-" Plug 'preservim/nerdcommenter'
+" Plug 'ryanoasis/vim-devicons'
 " Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdcommenter'
+" Plug 'majutsushi/tagbar'
+" Plug 'vim-scripts/SuperTab'
+" Plug 'davidhalter/jedi-vim'
 Plug 'Raimondi/delimitMate'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'davidhalter/jedi-vim'
-" Plug 'ryanoasis/vim-devicons'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
 "重新映射 esc 按键
 inoremap jj <esc>
 
-nnoremap <leader>n :NERDTree <CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+" nnoremap <leader>n :NERDTree <CR>
+nnoremap <leader>a :TagbarToggle<CR>
 nnoremap <leader>l :!
 nnoremap <leader>x :x<CR>
 nnoremap <leader>q :q!<CR>
@@ -131,6 +129,10 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" 是否显示隐藏文件
+let NERDTreeShowHidden=0
+" 设置宽度
+" let NERDTreeWinSize=20
 
 " vim-go 插件
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
@@ -147,3 +149,18 @@ endfunction
 
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+
+" coc-vim 插件
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
