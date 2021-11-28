@@ -9,10 +9,12 @@ let mapleader=","
 set timeoutlen=300
 "自动缩进
 set autoindent
-"将 tag 缩进改为 4 格
+"将 tab shift 缩进改为 4 格
 set tabstop=4
+set shiftwidth=4
 "将 tab 的缩进改为空格
-" set expandtab
+set expandtab
+set softtabstop=4
 "自动加载文件更改
 set autoread
 "开启光亮光标行
@@ -57,11 +59,10 @@ call plug#begin('~/.vim/plugged')
 " Plug 'preservim/nerdtree'
 " Plug 'preservim/nerdcommenter'
 " Plug 'majutsushi/tagbar'
-" Plug 'vim-scripts/SuperTab'
 " Plug 'davidhalter/jedi-vim'
 Plug 'Raimondi/delimitMate'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -157,17 +158,18 @@ autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+" let g:go_code_completion_enabled = 1
 
 " coc-vim 插件
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+ inoremap <silent><expr> <TAB>
+       \ pumvisible() ? "\<C-n>" :
+       \ <SID>check_back_space() ? "\<TAB>" :
+       \ coc#refresh()
+ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
+ function! s:check_back_space() abort
+   let col = col('.') - 1
+   return !col || getline('.')[col - 1]  =~# '\s'
+ endfunction
