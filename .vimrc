@@ -151,8 +151,8 @@ endfunction
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
+autocmd FileType go nmap <Leader>d <Plug>(go-doc-browser)
 autocmd FileType go nmap gc <Plug>(go-callers)
-autocmd FileType go nmap bd <Plug>(go-doc-browser)
 let g:go_auto_type_info = 1
 set updatetime=100
 " let g:go_auto_sameids = 1
