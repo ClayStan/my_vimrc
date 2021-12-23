@@ -46,37 +46,13 @@ set mouse=i
 "跨行移动光标
 "set whichwrap=b,s,<,>,[,]
 
-"记录光标位置
-augroup resCur
-  autocmd!
-  autocmd BufReadPost * call setpos(".", getpos("'\""))
-augroup END
-
-"Plugins 注释的是使用系统的包管理器安装了
-call plug#begin('~/.vim/plugged')
-
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'preservim/nerdtree'
-" Plug 'preservim/nerdcommenter'
-" Plug 'majutsushi/tagbar'
-" Plug 'davidhalter/jedi-vim'
-Plug 'Raimondi/delimitMate'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-call plug#end()
+"光标移动到行尾映射
+nnoremap - $
+"取消 q 的映射(cmd line window && recording
+nnoremap q <Nop>
 
 "重新映射 esc 按键
 inoremap jj <esc>
-
-nnoremap <leader>n :NERDTreeToggle<CR>
-" nnoremap <leader>n :NERDTree <CR>
-nnoremap <leader>a :TagbarToggle<CR>
-nnoremap <leader>l :!
-nnoremap <leader>x :x<CR>
-nnoremap <leader>q :q!<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>e :ab email Clay Stan <claystan97@gmail.com><CR>i
 
 "normal mode 下使用 c-k c-j 映射翻页
 nnoremap <c-k> <c-b>
@@ -88,11 +64,43 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
-"光标移动到行尾映射
-nnoremap - $
+"记录光标位置
+augroup resCur
+  autocmd!
+  autocmd BufReadPost * call setpos(".", getpos("'\""))
+augroup END
 
-"取消 q 的映射(cmd line window && recording
-nnoremap q <Nop>
+#coc 的浮动颜色设定
+hi FgCocErrorFloatBgCocFloating ctermfg=Black guifg=Red
+
+"Plugins 注释的是使用系统的包管理器安装了
+call plug#begin('~/.vim/plugged')
+
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdcommenter'
+" Plug 'majutsushi/tagbar'
+" Plug 'davidhalter/jedi-vim'
+Plug 'Raimondi/delimitMate'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim',{'branch':'main'}
+Plug 'kevinoid/vim-jsonc'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+call plug#end()
+
+#vim-jsonc
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+nnoremap <leader>n :NERDTreeToggle<CR>
+" nnoremap <leader>n :NERDTree <CR>
+nnoremap <leader>a :TagbarToggle<CR>
+nnoremap <leader>l :!
+nnoremap <leader>x :x<CR>
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>e :ab email Clay Stan <claystan97@gmail.com><CR>i
 
 "jedi-vim 插件
 autocmd FileType python setlocal completeopt-=preview
@@ -175,3 +183,7 @@ autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
    let col = col('.') - 1
    return !col || getline('.')[col - 1]  =~# '\s'
  endfunction
+
+" colorscheme nord
+" let g:nord_italic = 1
+" let g:nord_italic_comments = 1
