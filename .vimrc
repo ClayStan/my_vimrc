@@ -70,7 +70,7 @@ augroup resCur
   autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup END
 
-#coc 的浮动颜色设定
+"coc 的浮动颜色设定
 hi FgCocErrorFloatBgCocFloating ctermfg=Black guifg=Red
 
 "Plugins 注释的是使用系统的包管理器安装了
@@ -90,7 +90,7 @@ Plug 'kevinoid/vim-jsonc'
 
 call plug#end()
 
-#vim-jsonc
+"vim-jsonc
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 nnoremap <leader>n :NERDTreeToggle<CR>
