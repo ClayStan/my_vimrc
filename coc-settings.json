@@ -1,0 +1,5 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": ["rust","go"],
+    "coc.source.word.enable": false
+}
+

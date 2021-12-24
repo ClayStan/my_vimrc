@@ -80,13 +80,8 @@ call plug#begin('~/.vim/plugged')
 " Plug 'preservim/nerdtree'
 " Plug 'preservim/nerdcommenter'
 " Plug 'majutsushi/tagbar'
-" Plug 'davidhalter/jedi-vim'
-Plug 'Raimondi/delimitMate'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'arcticicestudio/nord-vim'
-Plug 'joshdick/onedark.vim',{'branch':'main'}
 Plug 'kevinoid/vim-jsonc'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -101,14 +96,6 @@ nnoremap <leader>x :x<CR>
 nnoremap <leader>q :q!<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>e :ab email Clay Stan <claystan97@gmail.com><CR>i
-
-"jedi-vim 插件
-autocmd FileType python setlocal completeopt-=preview
-let g:pymode_rope = 0
-let g:jedi#smart_auto_mappings = 1
-let g:jedi#completions_command = "<TAB>"
-let g:jedi#popup_on_dot=0
-let g:jedi#usages_command = "<leader>u"
 
 " neertree 插件
 " Exit Vim if NERDTree is the only window remaining in the only tab.
@@ -143,47 +130,27 @@ let NERDTreeShowHidden=0
 " 设置宽度
 " let NERDTreeWinSize=20
 
-" vim-go 插件
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
+" coc-vim plug coc-go coc-json coc-pairs coc-pyright coc-rust-analyzer coc-sh coc-snippets coc-word
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-autocmd FileType go nmap <Leader>i <Plug>(go-info)
-autocmd FileType go nmap <Leader>d <Plug>(go-doc-browser)
-autocmd FileType go nmap gc <Plug>(go-callers)
-let g:go_auto_type_info = 1
-set updatetime=100
-" let g:go_auto_sameids = 1
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-" let g:go_code_completion_enabled = 1
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
 
-" coc-vim 插件
- inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
- inoremap <silent><expr> <TAB>
-       \ pumvisible() ? "\<C-n>" :
-       \ <SID>check_back_space() ? "\<TAB>" :
-       \ coc#refresh()
- inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" fix nvim cuisor change to block
+set guicursor=
 
- function! s:check_back_space() abort
-   let col = col('.') - 1
-   return !col || getline('.')[col - 1]  =~# '\s'
- endfunction
-
-" colorscheme nord
-" let g:nord_italic = 1
-" let g:nord_italic_comments = 1
+" autocmd FileType rust let b:coc_suggest_disable = 1
