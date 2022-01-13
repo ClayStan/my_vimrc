@@ -1,5 +1,8 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["rust","go"],
-    "coc.source.word.enable": false
+    "coc.source.word.enable": true,
+    "coc.source.word.filetypes": ["markdown"],
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+    "rust-analyzer.updates.checkOnStartup": false
 }
 
