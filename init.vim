@@ -74,12 +74,12 @@ augroup END
 hi FgCocErrorFloatBgCocFloating ctermfg=Black guifg=Red
 
 "Plugins 注释的是使用系统的包管理器安装了
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'preservim/nerdtree'
 " Plug 'preservim/nerdcommenter'
-" Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'kevinoid/vim-jsonc',
 Plug 'github/copilot.vim'
