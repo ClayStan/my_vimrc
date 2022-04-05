@@ -81,7 +81,8 @@ call plug#begin('~/.vim/plugged')
 " Plug 'preservim/nerdcommenter'
 " Plug 'majutsushi/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'kevinoid/vim-jsonc'
+Plug 'kevinoid/vim-jsonc',
+Plug 'github/copilot.vim'
 
 call plug#end()
 
