@@ -82,6 +82,7 @@ call plug#begin()
 Plug 'majutsushi/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'kevinoid/vim-jsonc',
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  },
 Plug 'github/copilot.vim'
 
 call plug#end()
@@ -155,3 +156,5 @@ nmap <leader>rn <Plug>(coc-rename)
 set guicursor=
 
 " autocmd FileType rust let b:coc_suggest_disable = 1
+
+let g:mkdp_auto_start = 1
