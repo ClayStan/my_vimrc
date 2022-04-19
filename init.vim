@@ -76,7 +76,7 @@ hi FgCocErrorFloatBgCocFloating ctermfg=Black guifg=Red
 "Plugins 注释的是使用系统的包管理器安装了
 call plug#begin()
 
-" Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons' // need nerd-fonts(AUR)
 " Plug 'preservim/nerdtree'
 " Plug 'preservim/nerdcommenter'
 Plug 'majutsushi/tagbar'
