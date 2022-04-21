@@ -157,4 +157,4 @@ set guicursor=
 
 " autocmd FileType rust let b:coc_suggest_disable = 1
 
-let g:mkdp_auto_start = 1
+" let g:mkdp_auto_start = 1
